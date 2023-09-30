@@ -1,9 +1,9 @@
 import { Sequelize } from 'sequelize';
 import { env } from '../env';
 
-export const sequelize = new Sequelize(env.BD_MYSQL.MYSQL_DATABASE!, env.BD_MYSQL.MYSQL_USER!, env.BD_MYSQL.MYSQL_PASSWORD!, {
+export const sequelize = new Sequelize(env.BD.MYSQL.DATABASE!, env.BD.MYSQL.USER!, env.BD.MYSQL.PASSWORD!, {
   dialect: 'mysql',
-  host: env.BD_MYSQL.MYSQL_HOST,
+  host: env.BD.MYSQL.HOST,
 });
 
 export const dbConnectMySql = async () => {

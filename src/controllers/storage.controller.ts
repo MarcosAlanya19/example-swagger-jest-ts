@@ -33,7 +33,7 @@ export const createItem = async (req: Request, res: Response) => {
     const { file } = req;
     const fileData = {
       filename: file?.filename,
-      url: `${env.PUBLIC_URL}/${file?.filename}`,
+      url: `${env.PUBLIC.URL}/${file?.filename}`,
     };
     const data = await Storage.create(fileData);
     res.status(201);
@@ -49,7 +49,7 @@ export const deleteItem = async (req: Request, res: Response) => {
     const { id } = body;
     const dataFile = await Storage.findById(id);
     await Storage.findByIdAndDelete(id);
-    const filePath = `${env.PUBLIC_PATH}/${dataFile?.filename}`;
+    const filePath = `${env.PUBLIC.PATH}/${dataFile?.filename}`;
     fs.unlinkSync(filePath);
 
     const data = {

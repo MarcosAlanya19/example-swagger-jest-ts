@@ -3,16 +3,22 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export const env = {
-  BD_MONGODB: process.env.URL_DATABASE || 'TEST',
-  BD_MYSQL: {
-    MYSQL_DATABASE: process.env.MYSQL_DATABASE,
-    MYSQL_USER: process.env.MYSQL_USER,
-    MYSQL_PASSWORD: process.env.MYSQL_PASSWORD,
-    MYSQL_HOST: process.env.MYSQL_HOST,
+  BD: {
+    TEST: process.env.URL_DATABASE_TEST,
+    MONGODB: process.env.URL_DATABASE || 'TEST',
+    MYSQL: {
+      DATABASE: process.env.MYSQL_DATABASE,
+      USER: process.env.MYSQL_USER,
+      PASSWORD: process.env.MYSQL_PASSWORD,
+      HOST: process.env.MYSQL_HOST,
+    },
   },
   PORT: process.env.PORT || 3000,
-  PUBLIC_URL: process.env.PUBLIC_URL,
-  PUBLIC_PATH: `${__dirname}/../storage`,
+  PUBLIC: {
+    URL: process.env.PUBLIC_URL,
+    PATH: `${__dirname}/../storage`,
+  },
   JWT_SECRET: process.env.JWT_SECRET,
-  ENGINE_DB: process.env.ENGINE_DB
+  ENGINE_DB: process.env.ENGINE_DB,
+  NODE_ENV: process.env.NODE_ENV || 'development',
 };

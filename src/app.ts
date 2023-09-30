@@ -7,7 +7,7 @@ import { env } from './config/env';
 import { openApiConfig } from './docs/swagger';
 import router from './routes';
 
-const app = express();
+export const app = express();
 
 app.use(cors());
 app.use(express.json());
@@ -15,11 +15,13 @@ app.use(express.static('src/storage'));
 app.use(express.urlencoded({ extended: true }));
 app.use('/documentation', swaggerUI.serve, swaggerUI.setup(openApiConfig));
 
-env.ENGINE_DB === 'mysql' ? dbConnectMySql() : dbConnect() ;
+env.ENGINE_DB === 'mysql' ? dbConnectMySql() : dbConnect();
 
 const port = env.PORT;
 app.use('/api', router);
 
-app.listen(port, () => {
-  console.log(`Local port: ${port}`);
-});
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(port, () => {
+    console.log(`Local port: ${port}`);
+  });
+}

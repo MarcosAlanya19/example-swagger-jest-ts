@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { IStorage } from '../types';
 
 const StorageSchema = new mongoose.Schema(
   {
@@ -14,4 +15,5 @@ const StorageSchema = new mongoose.Schema(
   }
 );
 
-export const Storage = mongoose.model('Storage', StorageSchema);
+export type StorageEntity = mongoose.InferSchemaType<typeof StorageSchema>;
+export const Storage: mongoose.Model<IStorage> = mongoose.model<IStorage>('Storage', StorageSchema);
