@@ -19,6 +19,8 @@ export const authMiddleware = async (req: Request, res: Response, next: NextFunc
       return;
     }
 
+
+
     const user = await User.findById({ _id }).select('-password -__v -token');
     if (!user) {
       handleHttpError(res, 'NOT_AUTHORIZATION');

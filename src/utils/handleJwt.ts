@@ -1,5 +1,7 @@
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import { env } from '../config/env';
+import { getProperties } from './handlePropertiesEngine';
+
 
 export const tokenSign = (user: any) => {
   const sign = jwt.sign(

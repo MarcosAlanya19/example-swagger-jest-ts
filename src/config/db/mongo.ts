@@ -1,9 +1,9 @@
 import mongoose, { Error, ResolveSchemaOptions } from 'mongoose';
-import { env } from './env';
+import { env } from '../env';
 
 export const dbConnect = async () => {
   try {
-    await mongoose.connect(env.BD);
+    await mongoose.connect(env.BD_MONGODB);
     console.log('Database connection established');
   } catch (error) {
     console.log(error);

@@ -19,7 +19,7 @@ export const register = async (req: Request, res: Response) => {
       token: tokenSign(dataUser),
     };
 
-    res.send({ data });
+    res.status(201).send({ data });
   } catch (error) {
     handleHttpError(res, 'ERROR_REGISTER_USER');
   }

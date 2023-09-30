@@ -1,7 +1,10 @@
-import express from 'express';
 import cors from 'cors';
+import express from 'express';
+import swaggerUI from 'swagger-ui-express';
+import { dbConnect } from './config/db/mongo';
+import { dbConnectMySql } from './config/db/mysql';
 import { env } from './config/env';
-import { dbConnect } from './config/database';
+import { openApiConfig } from './docs/swagger';
 import router from './routes';
 
 const app = express();
@@ -10,8 +13,9 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('src/storage'));
 app.use(express.urlencoded({ extended: true }));
+app.use('/documentation', swaggerUI.serve, swaggerUI.setup(openApiConfig));
 
-dbConnect();
+env.ENGINE_DB === 'mysql' ? dbConnectMySql() : dbConnect() ;
 
 const port = env.PORT;
 app.use('/api', router);
